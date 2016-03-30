@@ -2,6 +2,8 @@ package ds.gradies;
 
 import java.awt.image.BufferedImage;
 
+import apps.testers.poistesterConsts;
+
 public class PoisEditorJacobiMulti extends PoisEditor {
 
 	public static int MAX_TIME = 500;
@@ -27,6 +29,8 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 
 	private BufferedImage reconstruct(BufferedImage ik, Mask mk, BufferedImage seed) 
 	{
+		if(poistesterConsts.DEBUG) return ik;
+		
 		VectorImage U = PoisEditor.outerColor(ik, mk);
 		VectorImage G = PoisEditor.innerGrad(ik, mk);
 		VectorImage R = PoisEditor.jacobi(U, G, mk, MAX_TIME );
