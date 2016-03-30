@@ -11,6 +11,7 @@ import ds.gradies.MaskRectangle;
 import ds.gradies.PoisEditor;
 import ds.gradies.PoisEditorJacobi;
 import ds.gradies.PoisEditorJacobiMulti;
+import ds.writers.ItemWriter;
 
 public class poistesterApp 
 {
