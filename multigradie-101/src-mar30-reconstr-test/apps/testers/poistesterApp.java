@@ -12,6 +12,7 @@ import ds.gradies.PoisEditor;
 import ds.gradies.PoisEditorJacobi;
 import ds.gradies.PoisEditorJacobiMulti;
 import ds.writers.ItemWriter;
+import ds.writers.TableWriter;
 
 public class poistesterApp 
 {
@@ -19,7 +20,7 @@ public class poistesterApp
 	{
 		List<File> files = poistesterConsts.getImageFiles();
 		
-		ItemWriter out = new ItemWriter(poistesterConsts.getTable1());
+		ItemWriter out = new TableWriter(poistesterConsts.getTable1());
 		out.writeHeader();
 		
 		PoisEditor p1 = new PoisEditorJacobi();
