@@ -68,6 +68,11 @@ public class VectorImage {
 		return;		
 	}
 
+	public void set(int x, int y, double[] v) 
+	{
+		pixels[y][x] = v;
+	}	
+	
 	public double[] get(int x, int y) 
 	{
 		return pixels[y][x];
@@ -101,5 +106,6 @@ public class VectorImage {
 	public double[][][] getImageData() 
 	{
 		return pixels;
-	}	
+	}
+
 }

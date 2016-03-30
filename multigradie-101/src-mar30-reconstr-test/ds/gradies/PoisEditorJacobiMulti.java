@@ -34,10 +34,32 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 		
 		VectorImage U = PoisEditor.outerColor(ik, mk);
 		VectorImage G = PoisEditor.innerGrad(ik, mk);
+			
+		expand(seed, U, mk);
 		VectorImage R = PoisEditor.jacobi(U, G, mk, MAX_TIME );
 		
 		return R.toBufferedImage();
 	}
+
+	private VectorImage expand(BufferedImage seed, VectorImage u, Mask mk) 
+	{
+		int Rx = u.getWidth(), Ry = u.getHeight();
+		int Sx = seed.getWidth(), Sy = seed.getHeight();
+		
+		VectorImage S = new VectorImage(u);
+		
+		for(int x=0; x<Rx; x++) 
+		for(int y=0; y<Ry; y++) 
+		if( mk.get(x, y) ) 
+		{
+			int xt = x*Sx/Rx;
+			int yt = y*Sy/Ry;
+			u.set(x, y, S.get(xt, yt));
+		}
+		
+		return S;
+	}
+
 
 	private BufferedImage reconstruct(BufferedImage ik, Mask mk) 
 	{
