@@ -1,5 +1,6 @@
 package ds.gradies;
 
-public class Mask {
+public abstract class Mask {
+	public abstract boolean get(int x, int y);
 
 }
