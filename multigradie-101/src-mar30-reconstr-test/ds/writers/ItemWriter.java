@@ -2,7 +2,7 @@ package ds.writers;
 
 import java.io.File;
 
-public class ItemWriter 
+public abstract class ItemWriter 
 {
 	protected File target;
 
@@ -16,17 +16,10 @@ public class ItemWriter
 		return target;
 	}
 
-	public void writeHeader() {
-	}
+	public abstract void writeHeader();
 
-	public void writeFooter() 
-	{
-	}
+	public abstract void writeFooter(); 
 
-
-	public void writeItem(Object... objects)
-	{
-		
-	}
+	public abstract void writeItem(Object... objects);
 
 }
