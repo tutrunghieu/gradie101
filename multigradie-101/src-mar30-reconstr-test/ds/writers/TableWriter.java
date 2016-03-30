@@ -13,8 +13,17 @@ public class TableWriter extends ItemWriter {
 	public TableWriter(File f) throws Exception
 	{
 		super(f);
+		
+		f.getParentFile().mkdirs();
 		out = new PrintWriter(f);
 	}
+	
+	public File close() 
+	{
+		out.close();
+		return target;
+	}
+	
 
 	@Override
 	public void writeHeader() 
@@ -53,11 +62,12 @@ public class TableWriter extends ItemWriter {
 	private void insertImage(BufferedImage ak) 
 	{
 		File fk = new File(target.getParentFile().getAbsolutePath() + "/images/image-"+ (figure++) +".png");
+		fk.getParentFile().mkdirs();
 		
 		try { ImageIO.write(ak, "png", fk); }
 		catch(Exception xp) {}
 		
-		out.print("<img src='images/" + fk.getName() + "'>");
+		out.print("<img style='width:128px' src='images/" + fk.getName() + "'>");
 	}
 
 }

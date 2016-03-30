@@ -11,6 +11,8 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 	@Override
 	public BufferedImage reconstructImage(BufferedImage ik, Mask mk) 
 	{
+		if(poistesterConsts.DEBUG) return ik;
+		
 		BufferedImage i1 = shrink(ik);
 		Mask m1 = shrink(mk);
 		
@@ -29,7 +31,6 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 
 	private BufferedImage reconstruct(BufferedImage ik, Mask mk, BufferedImage seed) 
 	{
-		if(poistesterConsts.DEBUG) return ik;
 		
 		VectorImage U = PoisEditor.outerColor(ik, mk);
 		VectorImage G = PoisEditor.innerGrad(ik, mk);

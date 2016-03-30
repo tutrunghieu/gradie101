@@ -28,6 +28,8 @@ public class poistesterApp
 		
 		for(File fk: files)
 		{
+			System.out.println("Reconstructing " + fk.getAbsolutePath());
+			
 			BufferedImage ik = ImageIO.read(fk);
 			Mask mk = new MaskRectangle(ik);
 			
