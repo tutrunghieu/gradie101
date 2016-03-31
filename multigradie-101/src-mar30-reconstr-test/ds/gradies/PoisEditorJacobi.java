@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class PoisEditorJacobi extends PoisEditor {
 
-	public static int MAX_TIME = 5000;
+	public static int MAX_TIME = 10000;
 
 	@Override
 	public BufferedImage reconstructImage(BufferedImage ik, Mask mk) 

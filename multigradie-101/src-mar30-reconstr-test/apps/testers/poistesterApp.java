@@ -39,7 +39,8 @@ public class poistesterApp
 			BufferedImage i2 = p2.reconstructImage(ik, mk);			
 			double s2 = PoisEditor.similar(i2, ik);
 			
-			out.writeItem(fk.getName(), ik, i1, i2, s1, s2);
+			out.writeItem(ik, i1, i2);
+			out.writeItem(fk.getName(), s1, s2);
 		}
 		out.writeFooter();
 		out.close();		

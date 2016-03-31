@@ -3,11 +3,9 @@ package ds.gradies;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
-
 public class PoisEditorJacobiMulti extends PoisEditor {
 
-	public static int MAX_TIME = 500;
+	public static int MAX_TIME = 2000;
 
 	@Override
 	public BufferedImage reconstructImage(BufferedImage ik, Mask mk) 
@@ -93,7 +91,6 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 
 	private BufferedImage shrink(BufferedImage ik) 
 	{
-		ImageIcon icon = new ImageIcon(ik);
 		int W = (int)(ik.getWidth() * 0.5);
 		int H = (int)(ik.getHeight() * 0.5);
 		

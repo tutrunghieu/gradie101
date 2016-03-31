@@ -9,8 +9,8 @@ public abstract class PoisEditor
 
 	public static double similar(BufferedImage a, BufferedImage b) 
 	{
-		int mW = Math.max(a.getWidth(), b.getWidth());
-		int mH = Math.max(a.getHeight(), b.getHeight());
+		int mW = Math.min(a.getWidth(), b.getWidth());
+		int mH = Math.min(a.getHeight(), b.getHeight());
 		
 		double diff = 0;
 		for(int x=0; x<mW; x++)
@@ -95,8 +95,8 @@ public abstract class PoisEditor
 	
 		for(int tt=0; tt<maxtimes; tt++)
 		{	
-			for(int y=0; y<Ry; y++)
-			for(int x=0; x<Rx; x++)
+			for(int y=1; y<Ry-1; y++)
+			for(int x=1; x<Rx-1; x++)
 			if( m.get(x, y) )
 			for(int k=0; k<Rl; k++)
 			{
