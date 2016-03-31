@@ -1,6 +1,6 @@
 package ds.gradies;
 
-import java.awt.Image;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -97,7 +97,12 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 		int W = (int)(ik.getWidth() * 0.5);
 		int H = (int)(ik.getHeight() * 0.5);
 		
-		return (BufferedImage)icon.getImage().getScaledInstance(W, H, Image.SCALE_DEFAULT);		
+		BufferedImage res = new BufferedImage(W, H, ik.getType());
+		Graphics2D g = res.createGraphics();
+		g.drawImage(ik, 0, 0, W, H, null);
+		g.dispose();				
+		
+		return res;		
 	}
 
 }
