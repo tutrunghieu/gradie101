@@ -1,8 +1,9 @@
 package ds.gradies;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import apps.testers.poistesterConsts;
+import javax.swing.ImageIcon;
 
 public class PoisEditorJacobiMulti extends PoisEditor {
 
@@ -11,8 +12,6 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 	@Override
 	public BufferedImage reconstructImage(BufferedImage ik, Mask mk) 
 	{
-		if(poistesterConsts.DEBUG) return ik;
-		
 		BufferedImage i1 = shrink(ik);
 		Mask m1 = shrink(mk);
 		
@@ -31,7 +30,6 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 
 	private BufferedImage reconstruct(BufferedImage ik, Mask mk, BufferedImage seed) 
 	{
-		
 		VectorImage U = PoisEditor.outerColor(ik, mk);
 		VectorImage G = PoisEditor.innerGrad(ik, mk);
 			
@@ -52,8 +50,9 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 		for(int y=0; y<Ry; y++) 
 		if( mk.get(x, y) ) 
 		{
-			int xt = x*Sx/Rx;
-			int yt = y*Sy/Ry;
+			int xt = Math.min(x*Sx/Rx, Sx-1);
+			int yt = Math.min(y*Sy/Ry, Sy-1);
+			
 			u.set(x, y, S.get(xt, yt));
 		}
 		
@@ -70,14 +69,35 @@ public class PoisEditorJacobiMulti extends PoisEditor {
 		return R.toBufferedImage();
 	}
 
-	private Mask shrink(Mask mk) {
-		// TODO Auto-generated method stub
-		return null;
+	private Mask shrink(Mask mk) 
+	{
+		int Mx = mk.getWidth();
+		int My = mk.getHeight();
+		
+		int Rx = (int)(mk.getWidth() * 0.5);
+		int Ry = (int)(mk.getHeight() * 0.5);
+		Mask res = new MaskArray(Rx, Ry);
+		
+		for(int x=0; x<Rx; x++) 
+		for(int y=0; y<Ry; y++) 
+		{
+			int xt = Math.min(x*Mx/Rx, Mx-1);
+			int yt = Math.min(y*My/Ry, My-1);
+			
+			boolean vk = mk.get(xt, yt) | res.get(x, y);
+			res.set(x, y, vk);
+		}
+		
+		return res;
 	}
 
-	private BufferedImage shrink(BufferedImage ik) {
-		// TODO Auto-generated method stub
-		return null;
+	private BufferedImage shrink(BufferedImage ik) 
+	{
+		ImageIcon icon = new ImageIcon(ik);
+		int W = (int)(ik.getWidth() * 0.5);
+		int H = (int)(ik.getHeight() * 0.5);
+		
+		return (BufferedImage)icon.getImage().getScaledInstance(W, H, Image.SCALE_DEFAULT);		
 	}
 
 }
